@@ -1,0 +1,188 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+
+    <GameTooltip name="zeroDB_Tooltip" inherits="GameTooltipTemplate" parent="UIParent" hidden="true"/>
+
+    <Frame name="zeroDB_Tab" virtual="true">
+        <Size>
+            <AbsDimension x="96" y="32"/>
+        </Size>
+        <Layers>
+            <Layer>
+                <Texture name="$parent_Texture" file="Interface\AddOns\zeroDB\assets\tab_inactive">
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+                <FontString name="$parent_Text" inherits="zeroDB_10pt" text="PLACEHOLDER">
+                    <Anchors>
+                        <Anchor point="CENTER">
+                            <Offset>
+                                <AbsDimension x="0" y="4"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Button name="zeroDB_DroppedBy_Entry" virtual="true">
+        <Size>
+            <AbsDimension x="690" y="42" />
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" />
+        </Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture name="$parent_Highlight">
+                    <Color a="1" r="0" g="0" b="0" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+                <FontString name="$parent_Title" inherits="zeroDB_14pt" justifyH="LEFT" text="PLACEHOLDER">
+                    <Shadow>
+                        <Color a="0.75" r="0" g="0" b="0" />
+                        <Offset x="1" y="-1" />
+                    </Shadow>
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" relativePoint="LEFT">
+                            <Offset>
+                                <AbsDimension x="48" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parent_Subtitle" inherits="zeroDB_10pt" justifyH="LEFT" text="PLACEHOLDER">
+                    <Color a="1" r="0.5" g="0.5" b="0.5" />
+                    <Shadow>
+                        <Color a="0.75" r="0" g="0" b="0" />
+                        <Offset x="1" y="-1" />
+                    </Shadow>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="LEFT">
+                            <Offset>
+                                <AbsDimension x="48" y="-2"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parent_Right" inherits="zeroDB_14pt" justifyH="LEFT" text="PLACEHOLDER">
+                    <Color a="1" r="1" g="1" b="1" />
+                    <Shadow>
+                        <Color a="0.75" r="0" g="0" b="0" />
+                        <Offset x="1" y="-1" />
+                    </Shadow>
+                    <Anchors>
+                        <Anchor point="RIGHT">
+                            <Offset>
+                                <AbsDimension x="-8" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+            <Layer level="OVERLAY">
+                <Texture name="$parent_Icon" file="Interface\Icons\INV_Drink_Milk_01">
+                    <Size>
+                        <AbsDimension x="32" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchors point="LEFT">
+                            <Offset>
+                                <AbsDimension x="8" y="0"/>
+                            </Offset>
+                        </Anchors>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnClick>zeroDB.SpotlightFrame.on_result_click(this)</OnClick>
+            <OnShow>getglobal(this:GetName()..'_Highlight'):SetAlpha(0)</OnShow>
+            <OnEnter>getglobal(this:GetName()..'_Highlight'):SetAlpha(0.3)</OnEnter>
+            <OnLeave>getglobal(this:GetName()..'_Highlight'):SetAlpha(0)</OnLeave>
+        </Scripts>
+    </Button>
+
+    <Frame name="zeroDB_ItemViewFrame" inherits="zeroDB_ObjectViewFrame" hidden="true" enableMouse="true" movable="true" frameStrata="MEDIUM" frameLevel="195" parent="UIParent">
+        <Size>
+            <AbsDimension x="700" y="500" />
+        </Size>
+        <Frames>
+            <Button name="$parent_ItemIcon">
+                <Size>
+                    <AbsDimension x="32" y="32"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="-8" y="-8"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <NormalTexture file="Interface\Icons\INV_Drink_Milk_01"/>
+                <Scripts>
+                    <OnEnter>zeroDB.ItemViewFrame.show_tooltip()</OnEnter>
+                    <OnLeave>zeroDB_Tooltip:Hide()</OnLeave>
+                </Scripts>
+            </Button>
+            <Frame name="$parent_Tab_DroppedBy" inherits="zeroDB_Tab">
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="8" y="-36"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        zeroDB_ItemViewFrame_Tab_DroppedBy_Texture:SetTexture('Interface\\AddOns\\zeroDB\\assets\\tab_active')
+                        zeroDB_ItemViewFrame_Tab_DroppedBy_Text:SetText('DROPPED BY')
+                    </OnLoad>
+                </Scripts>
+            </Frame>
+            <Frame name="$parent_DroppedBy">
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-72"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT"/>
+                </Anchors>
+                <Layers>
+                    <Layer>
+                        <FontString name="$parent_NoResults" inherits="zeroDB_20ptLight" text="No data." hidden="true">
+                            <Color a="0.8" r="1" g="1" b="1" />
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnLoad>
+                        zeroDB_ItemViewFrame_Tab_DroppedBy_Texture:SetTexture('Interface\\AddOns\\zeroDB\\assets\\tab_active')
+                        zeroDB_ItemViewFrame_Tab_DroppedBy_Text:SetText('DROPPED BY')
+                    </OnLoad>
+                </Scripts>
+            </Frame>
+            <!--<Frame name="$parent_Tab_ReagentFor" inherits="zeroDB_Tab">
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="104" y="-36"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        zeroDB_ItemViewFrame_Tab_ReagentFor_Text:SetText('OBJECTIVE OF')
+                    </OnLoad>
+                </Scripts>
+            </Frame>-->
+        </Frames>
+    </Frame>
+</Ui>

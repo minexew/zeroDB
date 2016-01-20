@@ -1,0 +1,39 @@
+## Interface: 11200
+## Title: zeroDB
+## Author: Minexew
+## Notes: The ultimate database add-on for vanilla
+## Version: 1.0
+## SavedVariables: zeroDB_settings
+
+language\default.lua
+
+navigate.lua
+utility.lua
+
+zeroDB.lua
+zeroDB.xml
+
+db\creatures.lua
+db\items.lua
+db\keywords.lua
+db\search.lua
+
+# components
+ui\ListView.lua
+
+ui\ViewHeader.lua
+ui\ViewHeader.xml
+
+# base frames
+ui\ObjectViewFrame.lua
+ui\ObjectViewFrame.xml
+
+# top-level frames
+ui\IconFrame.lua
+ui\IconFrame.xml
+
+ui\ItemViewFrame.lua
+ui\ItemViewFrame.xml
+
+ui\SpotlightFrame.lua
+ui\SpotlightFrame.xml

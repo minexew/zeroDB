@@ -1,0 +1,42 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+
+    <Frame name="zeroDB_MainWindow" enableMouse="true" movable="true" frameStrata="MEDIUM" frameLevel="195" parent="UIParent">
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border"
+            tile="true">
+            <TileSize>
+                <AbsValue val="32" />
+            </TileSize>
+            <EdgeSize>
+                <AbsValue val="16" />
+            </EdgeSize>
+            <BackgroundInsets>
+                <AbsInset left="5" right="5" top="5" bottom="5" />
+            </BackgroundInsets>
+        </Backdrop>
+        <Size>
+            <AbsDimension x="500" y="350" />
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" />
+        </Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="zeroDB_20ptLight" text="zeroDB|cff888888 v1.0">
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="14" y="-10" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnShow>
+                this:SetBackdropBorderColor(0, 0, 0, 0.5)
+            </OnShow>
+        </Scripts>
+    </Frame>
+</Ui>

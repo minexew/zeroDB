@@ -1,0 +1,141 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+
+    <Button name="zeroDB_SpotlightResultItem" virtual="true">
+        <Size>
+            <AbsDimension x="490" y="42" />
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" />
+        </Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture name="$parent_Highlight">
+                    <Color a="1" r="0" g="0" b="0" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+                <FontString name="$parent_ItemName" inherits="zeroDB_14pt" justifyH="LEFT" text="PLACEHOLDER">
+                    <Shadow>
+                        <Color a="0.75" r="0" g="0" b="0" />
+                        <Offset x="1" y="-1" />
+                    </Shadow>
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" relativePoint="LEFT">
+                            <Offset>
+                                <AbsDimension x="48" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parent_ItemDesc" inherits="zeroDB_10pt" justifyH="LEFT" text="PLACEHOLDER">
+                    <Color a="1" r="0.5" g="0.5" b="0.5" />
+                    <Shadow>
+                        <Color a="0.75" r="0" g="0" b="0" />
+                        <Offset x="1" y="-1" />
+                    </Shadow>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="LEFT">
+                            <Offset>
+                                <AbsDimension x="48" y="-2"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+            <Layer level="OVERLAY">
+                <Texture name="$parent_Icon" file="Interface\Icons\INV_Drink_Milk_01">
+                    <Size>
+                        <AbsDimension x="32" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchors point="LEFT">
+                            <Offset>
+                                <AbsDimension x="8" y="0"/>
+                            </Offset>
+                        </Anchors>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnClick>zeroDB.SpotlightFrame.on_result_click(this)</OnClick>
+            <OnShow>getglobal(this:GetName()..'_Highlight'):SetAlpha(0)</OnShow>
+            <OnEnter>getglobal(this:GetName()..'_Highlight'):SetAlpha(0.3)</OnEnter>
+            <OnLeave>getglobal(this:GetName()..'_Highlight'):SetAlpha(0)</OnLeave>
+        </Scripts>
+    </Button>
+
+    <Frame name="zeroDB_SpotlightFrame" hidden="true" enableMouse="true" movable="true" frameStrata="MEDIUM" frameLevel="195" parent="UIParent">
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border"
+            tile="true">
+            <TileSize>
+                <AbsValue val="32" />
+            </TileSize>
+            <EdgeSize>
+                <AbsValue val="16" />
+            </EdgeSize>
+            <BackgroundInsets>
+                <AbsInset left="5" right="5" top="5" bottom="5" />
+            </BackgroundInsets>
+        </Backdrop>
+        <Size>
+            <AbsDimension x="500" y="48" />
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" />
+        </Anchors>
+        <Layers>
+            <Layer>
+                <FontString name="$parent_MoreResults" inherits="zeroDB_14pt" text="PLACEHOLDER" hidden="true">
+                    <Color a="0.5" r="1" g="1" b="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <EditBox name="$parent_EditBox">
+                <Size>
+                    <AbsDimension x="100" y="30"></AbsDimension>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="12" y="-8" />
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="-12" y="-40" />
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <FontString name="$parent_Placeholder" inherits="zeroDB_20ptLight" text="e.g. rare wand level 30">
+                            <Color a="0.5" r="1" g="1" b="1" />
+                            <Anchors>
+                                <Anchor point="LEFT"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnEscapePressed>
+                        this:GetParent():Hide();
+                    </OnEscapePressed>
+                    <OnTextChanged>
+                        zeroDB.SpotlightFrame.OnTextChanged(this:GetText());
+                    </OnTextChanged>
+                </Scripts>
+                <FontString inherits="zeroDB_20pt"/>
+            </EditBox>
+        </Frames>
+        <Scripts>
+            <OnShow>
+                this:SetBackdropBorderColor(0, 0, 0, 0.5)
+            </OnShow>
+        </Scripts>
+    </Frame>
+</Ui>

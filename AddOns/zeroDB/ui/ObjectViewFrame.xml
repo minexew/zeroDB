@@ -1,0 +1,74 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+
+    <Frame name="zeroDB_ObjectViewFrame" virtual="true">
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border"
+            tile="true">
+            <TileSize>
+                <AbsValue val="32" />
+            </TileSize>
+            <EdgeSize>
+                <AbsValue val="16" />
+            </EdgeSize>
+            <BackgroundInsets>
+                <AbsInset left="5" right="5" top="5" bottom="5" />
+            </BackgroundInsets>
+        </Backdrop>
+        <Size>
+            <AbsDimension x="500" y="350" />
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" />
+        </Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Title" inherits="zeroDB_20pt" text="PLACEHOLDER">
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="44" y="-13" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parent_VersionInfo" inherits="zeroDB_10pt" text="zeroDB r1">
+                    <Color a="0.5" r="1" g="1" b="1" />
+                    <Anchors>
+                        <Anchor point="BOTTOMRIGHT">
+                            <Offset>
+                                <AbsDimension x="-8" y="8" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button>
+                <Size>
+                    <AbsDimension x="24" y="24"/>
+                </Size>
+                <Anchors>
+                    <Anchors point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="12" y="-12"/>
+                        </Offset>
+                    </Anchors>
+                </Anchors>
+                <NormalTexture file="Interface\AddOns\zeroDB\assets\ui_back" />
+                <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD" />
+                <Scripts>
+                    <OnClick>zeroDB.ObjectViewFrame.on_back_button_click()</OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnMouseDown>
+                this:Hide();
+            </OnMouseDown>
+            <OnShow>
+                this:SetBackdropBorderColor(0, 0, 0, 0.5)
+            </OnShow>
+        </Scripts>
+    </Frame>
+</Ui>
