@@ -1,6 +1,6 @@
 ## zeroDB for WoW 1.12
 
-Current release: [zeroDB r1](#)
+Current release: [zeroDB r1](https://github.com/minexew/zeroDB/archive/r1.zip)
 
 What works:
 - looking up items, monsters and NPCs
@@ -17,7 +17,7 @@ Memory usage optimization isn't high on the priority list, however performance (
 
 ## Installation
 
-- download a [release](#) or the [bleeding-edge version](#)
+- download the [current release](https://github.com/minexew/zeroDB/archive/r1.zip)
 - extract into ```World of Warcraft\Interface``` so that the resulting path is ```Interface\AddOns\zeroDB```
 - that's it! no further configuration is required (or possible, for that matter)
 - look for the zeroDB icon near your mini-map
