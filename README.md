@@ -20,3 +20,5 @@ Memory usage optimization isn't high on the priority list, however performance (
 - extract into ```World of Warcraft\Interface\AddOns```
 - that's it! no further configuration is required (or possible, for that matter)
 - click the zeroDB icon near your mini-map to bring up the search frame
+
+![screenshot](http://i.imgur.com/RHWhkAf.png)
