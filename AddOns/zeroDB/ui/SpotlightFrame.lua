@@ -6,13 +6,8 @@ zeroDB.SpotlightFrame = {
 }
 
 function zeroDB.SpotlightFrame.get_result_frame_creature(index, creature)
-    local name = 'zeroDB_SpotlightResultItem'..index
-    local frame = zeroDB.SpotlightFrame.views[name]
-
-    if not frame then
-        frame = CreateFrame('Button', name, nil, 'zeroDB_SpotlightResultItem')
-        zeroDB.SpotlightFrame.views[name] = frame
-    end
+    local frame, name = zeroDB.ui.get_frame_from_cache_or_create('Button', 'zeroDB_SpotlightResultItem',
+        'zeroDB.SpotlightFrame'..index)
 
     local color = {1.0, 1.0, 0.3}
     getglobal(name.."_ItemName"):SetTextColor(color[1], color[2], color[3])
@@ -26,13 +21,8 @@ function zeroDB.SpotlightFrame.get_result_frame_creature(index, creature)
 end
 
 function zeroDB.SpotlightFrame.get_result_frame_item(index, item)
-    local name = 'zeroDB_SpotlightResultItem'..index
-    local frame = zeroDB.SpotlightFrame.views[name]
-
-    if not frame then
-        frame = CreateFrame('Button', name, nil, 'zeroDB_SpotlightResultItem')
-        zeroDB.SpotlightFrame.views[name] = frame
-    end
+    local frame, name = zeroDB.ui.get_frame_from_cache_or_create('Button', 'zeroDB_SpotlightResultItem',
+        'zeroDB.SpotlightFrame'..index)
 
     local color = zeroDB.db.item_qualities[item.quality].color
     getglobal(name.."_ItemName"):SetTextColor(color[1], color[2], color[3])

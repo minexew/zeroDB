@@ -17,9 +17,11 @@ db\creatures.lua
 db\items.lua
 db\keywords.lua
 db\search.lua
+db\quests.lua
 
 # components
 ui\ListView.lua
+ui\TabView.lua
 
 ui\ViewHeader.lua
 ui\ViewHeader.xml

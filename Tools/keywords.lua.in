@@ -1,0 +1,4 @@
+
+zeroDB = zeroDB or {}
+zeroDB.db = zeroDB.db or {}
+

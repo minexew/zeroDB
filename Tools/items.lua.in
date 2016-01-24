@@ -1,0 +1,14 @@
+
+zeroDB = zeroDB or {}
+zeroDB.db = zeroDB.db or {}
+
+zeroDB.db.item_qualities = {
+    [0] = {name = 'Poor', color = {0.7, 0.7, 0.7}},
+    [1] = {name = 'Common', color = {1.0, 1.0, 1.0}},
+    [2] = {name = 'Uncommon', color = {0.1, 0.9, 0.3}},
+    [3] = {name = 'Rare', color = {0.4, 0.8, 1.0}},
+    [4] = {name = 'Epic', color = {1.0, 0.3, 0.8}},
+    [5] = {name = 'Legendary', color = {1.0, 0.6, 0.2}},
+    [6] = {name = 'Artifact', color = {1.0, 0.3, 0.3}},
+}
+

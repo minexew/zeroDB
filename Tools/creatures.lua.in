@@ -1,0 +1,7 @@
+
+zeroDB = zeroDB or {}
+zeroDB.db = zeroDB.db or {}
+
+zeroDB.db.creature_types = {'Beast', 'Dragonkin', 'Demon', 'Elemental', 'Giant', 'Undead', 'Humanoid', 'Critter', 'Mechanical', 'Not specified', 'Totem'}
+zeroDB.db.creature_ranks = {'Elite', 'Rare Elite', 'World Boss', 'Rare'}
+

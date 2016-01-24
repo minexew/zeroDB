@@ -3,31 +3,6 @@
 
     <GameTooltip name="zeroDB_Tooltip" inherits="GameTooltipTemplate" parent="UIParent" hidden="true"/>
 
-    <Frame name="zeroDB_Tab" virtual="true">
-        <Size>
-            <AbsDimension x="96" y="32"/>
-        </Size>
-        <Layers>
-            <Layer>
-                <Texture name="$parent_Texture" file="Interface\AddOns\zeroDB\assets\tab_inactive">
-                    <Anchors>
-                        <Anchor point="TOPLEFT"/>
-                        <Anchor point="BOTTOMRIGHT"/>
-                    </Anchors>
-                </Texture>
-                <FontString name="$parent_Text" inherits="zeroDB_10pt" text="PLACEHOLDER">
-                    <Anchors>
-                        <Anchor point="CENTER">
-                            <Offset>
-                                <AbsDimension x="0" y="4"/>
-                            </Offset>
-                        </Anchor>
-                    </Anchors>
-                </FontString>
-            </Layer>
-        </Layers>
-    </Frame>
-
     <Button name="zeroDB_DroppedBy_Entry" virtual="true">
         <Size>
             <AbsDimension x="690" y="42" />
@@ -131,7 +106,7 @@
                     <OnLeave>zeroDB_Tooltip:Hide()</OnLeave>
                 </Scripts>
             </Button>
-            <Frame name="$parent_Tab_DroppedBy" inherits="zeroDB_Tab">
+            <Button name="$parent_Tab_DroppedBy" inherits="zeroDB_Tab">
                 <Anchors>
                     <Anchor point="TOPLEFT">
                         <Offset>
@@ -139,14 +114,33 @@
                         </Offset>
                     </Anchor>
                 </Anchors>
-                <Scripts>
-                    <OnLoad>
-                        zeroDB_ItemViewFrame_Tab_DroppedBy_Texture:SetTexture('Interface\\AddOns\\zeroDB\\assets\\tab_active')
-                        zeroDB_ItemViewFrame_Tab_DroppedBy_Text:SetText('DROPPED BY')
-                    </OnLoad>
-                </Scripts>
-            </Frame>
+            </Button>
+            <Button name="$parent_Tab_RewardFrom" inherits="zeroDB_Tab" />
+            <Button name="$parent_Tab_ReagentFor" inherits="zeroDB_Tab" />
+
             <Frame name="$parent_DroppedBy">
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-72"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT"/>
+                </Anchors>
+            </Frame>
+
+            <Frame name="$parent_RewardFrom">
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-72"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT"/>
+                </Anchors>
+            </Frame>
+
+            <Frame name="$parent_NoData">
                 <Anchors>
                     <Anchor point="TOPLEFT">
                         <Offset>
@@ -157,32 +151,12 @@
                 </Anchors>
                 <Layers>
                     <Layer>
-                        <FontString name="$parent_NoResults" inherits="zeroDB_20ptLight" text="No data." hidden="true">
+                        <FontString inherits="zeroDB_20ptLight" text="No data.">
                             <Color a="0.8" r="1" g="1" b="1" />
                         </FontString>
                     </Layer>
                 </Layers>
-                <Scripts>
-                    <OnLoad>
-                        zeroDB_ItemViewFrame_Tab_DroppedBy_Texture:SetTexture('Interface\\AddOns\\zeroDB\\assets\\tab_active')
-                        zeroDB_ItemViewFrame_Tab_DroppedBy_Text:SetText('DROPPED BY')
-                    </OnLoad>
-                </Scripts>
             </Frame>
-            <!--<Frame name="$parent_Tab_ReagentFor" inherits="zeroDB_Tab">
-                <Anchors>
-                    <Anchor point="TOPLEFT">
-                        <Offset>
-                            <AbsDimension x="104" y="-36"/>
-                        </Offset>
-                    </Anchor>
-                </Anchors>
-                <Scripts>
-                    <OnLoad>
-                        zeroDB_ItemViewFrame_Tab_ReagentFor_Text:SetText('OBJECTIVE OF')
-                    </OnLoad>
-                </Scripts>
-            </Frame>-->
         </Frames>
     </Frame>
 </Ui>

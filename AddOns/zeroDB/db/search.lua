@@ -71,9 +71,29 @@ function zeroDB.get_creature_subtitle(creature)
     return desc
 end
 
+function zeroDB.get_quest_subtitle(quest)
+    local desc = 'Quest'
+
+    if quest.minlevel > 1 then
+        desc = desc..' – Level '..quest.minlevel
+
+        if quest.minlevel < zeroDB.MAX_LEVEL then
+            desc = desc..'+'
+        end
+    end
+
+    return desc
+end
+
 function zeroDB.test_keyword(obj, keyword)
     if zeroDB.begins_with(keyword, '-l') then
-        if obj.requiredlevel then
+        if obj.required_skill_level and obj.required_skill_level ~= 0 then
+            local level = tonumber(string.sub(keyword, 3))
+
+            if level and obj.required_skill_level >= level - 25 and obj.required_skill_level <= level + 10 then
+                return true
+            end
+        elseif obj.requiredlevel and obj.requiredlevel > 0 then
             local level = tonumber(string.sub(keyword, 3))
 
             if level and obj.requiredlevel >= level - 3 and obj.requiredlevel <= level + 3 then

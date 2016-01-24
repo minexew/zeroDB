@@ -1,6 +1,33 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
 
+    <Button name="zeroDB_Tab" virtual="true">
+        <Size>
+            <AbsDimension x="96" y="32"/>
+        </Size>
+        <Layers>
+            <Layer>
+                <!--<Texture name="$parent_Texture" file="Interface\AddOns\zeroDB\assets\tab_inactive">
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>-->
+                <FontString name="$parent_Text" inherits="zeroDB_10pt" text="PLACEHOLDER">
+                    <Anchors>
+                        <Anchor point="CENTER">
+                            <Offset>
+                                <AbsDimension x="0" y="4"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <NormalTexture file="Interface\AddOns\zeroDB\assets\tab_inactive" />
+        <HighlightTexture file="Interface\AddOns\zeroDB\assets\tab_highlight" alphaMode="ADD" />
+    </Button>
+
     <Frame name="zeroDB_ObjectViewFrame" virtual="true">
         <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border"
             tile="true">
@@ -31,7 +58,7 @@
                         </Anchor>
                     </Anchors>
                 </FontString>
-                <FontString name="$parent_VersionInfo" inherits="zeroDB_10pt" text="zeroDB r1">
+                <FontString name="$parent_VersionInfo" inherits="zeroDB_10pt" text="zeroDB r2">
                     <Color a="0.5" r="1" g="1" b="1" />
                     <Anchors>
                         <Anchor point="BOTTOMRIGHT">
@@ -63,9 +90,6 @@
             </Button>
         </Frames>
         <Scripts>
-            <OnMouseDown>
-                this:Hide();
-            </OnMouseDown>
             <OnShow>
                 this:SetBackdropBorderColor(0, 0, 0, 0.5)
             </OnShow>

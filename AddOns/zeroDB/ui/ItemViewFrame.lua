@@ -2,7 +2,7 @@
 zeroDB = zeroDB or {}
 zeroDB.ItemViewFrame = {
     DroppedBy = {},
-    dropped_by_frame = {},
+    RewardFrom = {},
 }
 
 function zeroDB.ItemViewFrame.hide()
@@ -11,18 +11,13 @@ function zeroDB.ItemViewFrame.hide()
 end
 
 function zeroDB.ItemViewFrame.get_dropped_by_frame(drop, index)
-    local name = 'zeroDB_DroppedBy_Entry'..index
-    local frame = zeroDB.ItemViewFrame.dropped_by_frame[name]
+    local frame, name = zeroDB.ui.get_frame_from_cache_or_create('Button', 'zeroDB_DroppedBy_Entry',
+        'zeroDB.ItemViewFrame.DroppedBy'..index)
 
-    if not frame then
-        frame = CreateFrame('Button', name, nil, 'zeroDB_DroppedBy_Entry')
-        zeroDB.ItemViewFrame.dropped_by_frame[name] = frame
-    end
-
-    local ref = drop[1]
+    local creature_id = drop[1]
     local chance = drop[2]
 
-    local creature = zeroDB.get_object(ref)
+    local creature = zeroDB.db.creatures[creature_id]
 
     --local color = {1.0, 0.3, 0.3}
     --getglobal(name.."_Title"):SetTextColor(color[1], color[2], color[3])
@@ -32,7 +27,7 @@ function zeroDB.ItemViewFrame.get_dropped_by_frame(drop, index)
     local chance_str
 
     if chance < 0 then
-        chance_str = -chance .. '%'
+        chance_str = ''
     else
         chance_str = chance .. '%'
     end
@@ -45,8 +40,34 @@ function zeroDB.ItemViewFrame.get_dropped_by_frame(drop, index)
     return frame
 end
 
+function zeroDB.ItemViewFrame.get_reward_from_frame(quest_id, index)
+    local frame, name = zeroDB.ui.get_frame_from_cache_or_create('Button', 'zeroDB_DroppedBy_Entry',
+        'zeroDB.ItemViewFrame.RewardFrom'..index)
+
+    local quest = zeroDB.db.quests[quest_id]
+
+    getglobal(name.."_Title"):SetText(quest.name)
+    getglobal(name.."_Subtitle"):SetText(zeroDB.get_quest_subtitle(quest))
+    getglobal(name.."_Right"):SetText('')
+
+    getglobal(name.."_Icon"):SetTexture('Interface\\Icons\\INV_Letter_17')
+
+    frame.linked_object = quest
+    return frame
+end
+
 function zeroDB.ItemViewFrame.show(nav)
     this = zeroDB_ItemViewFrame
+
+    if not zeroDB.ItemViewFrame.tab_view then
+        zeroDB.ItemViewFrame.tab_view = zeroDB.TabView:new{
+            tabs = {
+                {zeroDB_ItemViewFrame_Tab_DroppedBy, zeroDB_ItemViewFrame_DroppedBy, title = 'DROPPED BY'},
+                {zeroDB_ItemViewFrame_Tab_RewardFrom, zeroDB_ItemViewFrame_RewardFrom, title = 'REWARD FROM'},
+                --{zeroDB_ItemViewFrame_Tab_ReagentFor, zeroDB_ItemViewFrame_ReagentFor, title = 'REAGENT FOR'},
+            },
+        }
+    end
 
     if not zeroDB.ItemViewFrame.DroppedBy.list_view then
         zeroDB.ItemViewFrame.DroppedBy.list_view = zeroDB.ListView:new{
@@ -54,6 +75,14 @@ function zeroDB.ItemViewFrame.show(nav)
             present_result = zeroDB.ItemViewFrame.get_dropped_by_frame,
             x = 5, y = 0, result_height = 42, spacing = 0, max_results = 10,
             no_results_frame = zeroDB_ItemViewFrame_DroppedBy_NoResults
+        }
+    end
+
+    if not zeroDB.ItemViewFrame.RewardFrom.list_view then
+        zeroDB.ItemViewFrame.RewardFrom.list_view = zeroDB.ListView:new{
+            container = zeroDB_ItemViewFrame_RewardFrom,
+            present_result = zeroDB.ItemViewFrame.get_reward_from_frame,
+            x = 5, y = 0, result_height = 42, spacing = 0, max_results = 10
         }
     end
 
@@ -65,7 +94,17 @@ function zeroDB.ItemViewFrame.show(nav)
     zeroDB_ItemViewFrame_Title:SetText(item.name)
     zeroDB_ItemViewFrame_ItemIcon:SetNormalTexture('Interface\\Icons\\'..item.icon)
 
-    zeroDB.ItemViewFrame.DroppedBy.show(item)
+    local has_dropped_by = zeroDB.ItemViewFrame.DroppedBy.show(item)
+    local has_reward_from = zeroDB.ItemViewFrame.RewardFrom.show(item)
+    local has_reagent_for = false
+
+    local num_visible = zeroDB.ItemViewFrame.tab_view:set_visibility({has_dropped_by, has_reward_from, has_reagent_for})
+
+    if num_visible == 0 then
+        zeroDB_ItemViewFrame_NoData:Show()
+    else
+        zeroDB_ItemViewFrame_NoData:Hide()
+    end
 
     zeroDB_ItemViewFrame:Show()
 
@@ -85,8 +124,32 @@ end
 -------------------
 
 function zeroDB.ItemViewFrame.DroppedBy.show(item)
-    local results = zeroDB.db.items_dropped_by[item.id] or {}
-    local num_results = table.getn(results)
+    local encoded_results = zeroDB.db.items_dropped_by[item.id] or {}
+    local num_results = table.getn(encoded_results)
+
+    if num_results == 0 then
+        return false
+    end
+
+    local results = {}
+    num_results = num_results / 2
+
+    for i = 1, num_results do
+        results[i] = {encoded_results[1 + (i - 1) * 2], encoded_results[2 + (i - 1) * 2]}
+    end
 
     zeroDB.ItemViewFrame.DroppedBy.list_view:build(results, num_results)
+    return true
+end
+
+function zeroDB.ItemViewFrame.RewardFrom.show(item)
+    local results = zeroDB.db.items_reward_from[item.id] or {}
+    local num_results = table.getn(results)
+
+    if num_results == 0 then
+        return false
+    end
+
+    zeroDB.ItemViewFrame.RewardFrom.list_view:build(results, num_results)
+    return true
 end
