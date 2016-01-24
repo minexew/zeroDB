@@ -17,6 +17,6 @@ Memory usage optimization isn't high on the priority list, however performance (
 ## Installation
 
 - download the [current release](https://github.com/minexew/zeroDB/releases/download/r2/zeroDB-r2.7z)
-- extract into ```World of Warcraft\Interface``` so that the resulting path is ```Interface\AddOns\zeroDB```
+- extract into ```World of Warcraft\Interface\AddOns```
 - that's it! no further configuration is required (or possible, for that matter)
-- look for the zeroDB icon near your mini-map
+- click the zeroDB icon near your mini-map to bring up the search frame
