@@ -7,7 +7,7 @@ from mysql.connector import errorcode
 
 from game_tables import *
 
-print('zeroDB process_db.py r2')
+print('zeroDB process_db.py')
 print()
 
 if len(sys.argv) < 4:
