@@ -37,3 +37,10 @@ function zeroDB.ui.get_frame_from_cache_or_create(type, frame_name, index)
 
     return frame, name
 end
+
+function zeroDB.ui.paste_item_clink(item)
+    local color = zeroDB.db.item_qualities[item.quality].color_hex
+
+    ChatFrameEditBox:Show()
+    ChatFrameEditBox:Insert("|cFF"..color.."|Hitem:"..item.id..":0:0:0|h["..item.name.."]|h|r")
+end

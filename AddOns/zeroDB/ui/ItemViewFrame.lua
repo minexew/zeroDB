@@ -56,6 +56,12 @@ function zeroDB.ItemViewFrame.get_reward_from_frame(quest_id, index)
     return frame
 end
 
+function zeroDB.ItemViewFrame.on_icon_click()
+    local item = zeroDB.ItemViewFrame.item
+
+    zeroDB.ui.paste_item_clink(item)
+end
+
 function zeroDB.ItemViewFrame.show(nav)
     this = zeroDB_ItemViewFrame
 
@@ -87,6 +93,7 @@ function zeroDB.ItemViewFrame.show(nav)
     end
 
     local item = nav.item
+    zeroDB.ItemViewFrame.item = item
     zeroDB.ItemViewFrame.item_link = "item:"..item.id..":0:0:0"
 
     local color = zeroDB.db.item_qualities[item.quality].color

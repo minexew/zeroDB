@@ -68,7 +68,11 @@ function zeroDB.SpotlightFrame.on_result_click(result_frame)
     local type = obj.type
 
     if type == 'item' then
-        zeroDB.navigate.to{view = zeroDB.ItemViewFrame, item = obj}
+        if IsShiftKeyDown() then
+            zeroDB.ui.paste_item_clink(obj)
+        else
+            zeroDB.navigate.to{view = zeroDB.ItemViewFrame, item = obj}
+        end
     else
         --zeroDB.debug('Error: invalid object type', type)
     end

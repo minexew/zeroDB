@@ -104,6 +104,7 @@
                 <Scripts>
                     <OnEnter>zeroDB.ItemViewFrame.show_tooltip()</OnEnter>
                     <OnLeave>zeroDB_Tooltip:Hide()</OnLeave>
+                    <OnClick>zeroDB.ItemViewFrame.on_icon_click(arg1)</OnClick>
                 </Scripts>
             </Button>
             <Button name="$parent_Tab_DroppedBy" inherits="zeroDB_Tab">

@@ -3,12 +3,12 @@ zeroDB = zeroDB or {}
 zeroDB.db = zeroDB.db or {}
 
 zeroDB.db.item_qualities = {
-    [0] = {name = 'Poor', color = {0.7, 0.7, 0.7}},
-    [1] = {name = 'Common', color = {1.0, 1.0, 1.0}},
-    [2] = {name = 'Uncommon', color = {0.1, 0.9, 0.3}},
-    [3] = {name = 'Rare', color = {0.4, 0.8, 1.0}},
-    [4] = {name = 'Epic', color = {1.0, 0.3, 0.8}},
-    [5] = {name = 'Legendary', color = {1.0, 0.6, 0.2}},
-    [6] = {name = 'Artifact', color = {1.0, 0.3, 0.3}},
+    [0] = {name = 'Poor', color = {0.7, 0.7, 0.7}, color_hex = 'B3B3B3'},
+    [1] = {name = 'Common', color = {1.0, 1.0, 1.0}, color_hex = 'FFFFFF'},
+    [2] = {name = 'Uncommon', color = {0.1, 0.9, 0.3}, color_hex = '19E64C'},
+    [3] = {name = 'Rare', color = {0.4, 0.8, 1.0}, color_hex = '66CCFF'},
+    [4] = {name = 'Epic', color = {1.0, 0.3, 0.8}, color_hex = 'FF4CCC'},
+    [5] = {name = 'Legendary', color = {1.0, 0.6, 0.2}, color_hex = 'FF9733'},
+    [6] = {name = 'Artifact', color = {1.0, 0.9, 0.6}, color_hex = 'FFE697'},
 }
 
