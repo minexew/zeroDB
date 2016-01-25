@@ -1,9 +1,9 @@
 ## zeroDB for WoW 1.12
 
-Current release: [zeroDB r2](https://github.com/minexew/zeroDB/releases/download/r2/zeroDB-r2.7z)
+Current release: [zeroDB r3](https://github.com/minexew/zeroDB/releases/download/r3/zeroDB-r3.7z)
 
 What works:
-- looking up items, viewing item details
+- looking up items, viewing item details, posting item links
 - item details: dropped by (creatures), reward from (quests)
 
 What doesn't (yet):
@@ -16,7 +16,7 @@ Memory usage optimization isn't high on the priority list, however performance (
 
 ## Installation
 
-- download the [current release](https://github.com/minexew/zeroDB/releases/download/r2/zeroDB-r2.7z)
+- download the [current release](https://github.com/minexew/zeroDB/releases/download/r3/zeroDB-r3.7z)
 - extract into ```World of Warcraft\Interface\AddOns```
 - that's it! no further configuration is required (or possible, for that matter)
 - click the zeroDB icon near your mini-map to bring up the search frame
